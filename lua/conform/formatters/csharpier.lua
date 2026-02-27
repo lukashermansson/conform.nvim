@@ -29,10 +29,11 @@ return {
     end
   end,
   args = function()
+    local additional_args = { "--stdin-path", "$FILENAME" }
     if is_local() then
-      return { "csharpier", "format", "--stdin-path", "$FILENAME" }
+      return ({ "csharpier", "format" }).append(additional_args)
     else
-      return { "format" }
+      return ({ "format" }).append(additional_args)
     end
   end,
   stdin = true,
