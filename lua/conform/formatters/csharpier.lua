@@ -29,10 +29,11 @@ return {
     end
   end,
   args = function()
+    local additional_args = { "--stdin-path", "$FILENAME" }
     if is_local() then
-      return { "csharpier", "format", "--stdin-path", "$FILENAME" }
+      return vim.list_extend({ "csharpier", "format" }, additional_args)
     else
-      return { "format" }
+      return vim.list_extend({ "format" }, additional_args)
     end
   end,
   stdin = true,
